@@ -2,269 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LOVE-LETTER-FOR-YOU 💌</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <title>LOVE-LETTER-FOR-YOU</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
-    }
-
-    :root {
-      --red-dk: #BA0025;
-      --red-md: #DC143C;
-      --pink-lt: #FFB6C1;
-      --purple-dk: #98006A;
-      --neutral-md: #999;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     body {
-      background: var(--pink-lt);
-      font-family: "Poppins", sans-serif;
-    }
-
-    article {
+      margin: 0;
       height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
-    h1, h2 {
-      font-family: "Lobster", cursive;
-      color: var(--red-dk);
-      text-shadow: 1px 2px 2px white;
-    }
-
-    .envelope-container {
-      position: relative;
-      width: 350px;
-      height: 450px;
-    }
-
-    .message {
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
       text-align: center;
-      margin-top: 40px;
-      transition: opacity 0.6s ease;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.5s ease;
     }
 
-    .message.hide {
-      opacity: 0;
-      pointer-events: none;
+    h1 {
+      color: #e63946;
+      margin-bottom: 10px;
     }
 
-    .message-2 {
-      display: none;
+    .letter {
+      font-size: 1.05em;
+      color: #333;
+      min-height: 120px;
+      margin-top: 15px;
+      white-space: pre-line;
     }
 
-    .envelope-base {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 200px;
-      background: white;
-      border: 1px solid var(--neutral-md);
-      border-radius: 5px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.3);
-    }
-
-    .envelope-flap {
-      position: absolute;
-      bottom: 50px;
-      width: 100%;
-      height: 300px;
-      z-index: 10;
-    }
-
-    .inner {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 50%;
-      transform-origin: bottom;
-      transition: transform 0.8s ease;
-    }
-
-    .inner-open {
-      transform: rotateX(180deg);
-    }
-
-    .outer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-
-    .outer-open {
-      opacity: 1;
-    }
-
-    polygon {
-      fill: white;
-      stroke: #999;
-    }
-
-    .heart-btn {
-      position: absolute;
-      bottom: 20px;
-      left: 145px;
-      font-size: 60px;
-      color: var(--red-md);
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      background: #e63946;
+      color: #fff;
+      font-size: 1em;
       cursor: pointer;
-      z-index: 1000;
+      transition: 0.3s;
     }
 
-    .heart-btn-text {
+    button:hover {
+      background: #c71f2d;
+      transform: scale(1.05);
+    }
+
+    .heart {
       position: absolute;
-      font-size: 12px;
-      color: white;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 35px;
-    }
-
-    .close-btn {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      padding: 8px 16px;
-      font-size: 10px;
-      background: var(--pink-lt);
-      border-radius: 5px;
-      display: none;
-      cursor: pointer;
-    }
-
-    .close-btn.show {
-      display: block;
-    }
-
-    .hide {
-      display: none;
-    }
-
-    /* FLOATING SWEET WORDS */
-    .floating-hearts {
-      position: absolute;
-      top: 60px;
-      width: 100%;
-      pointer-events: none;
-    }
-
-    .hearts-row {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      opacity: 0;
-    }
-
-    .love-text {
-      font-family: "Lobster", cursive;
+      color: rgba(255, 0, 76, 0.6);
       font-size: 18px;
-      color: var(--purple-dk);
-      text-shadow: 1px 1px 2px white;
+      animation: float 6s linear infinite;
     }
 
-    .animated {
-      animation: floatLove 3s ease forwards;
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
     }
 
-    @keyframes floatLove {
-      0% { opacity: 0; transform: translateY(20px); }
-      30% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-120px); }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      margin-top: 15px;
+      font-size: 0.85em;
+      color: #777;
     }
   </style>
 </head>
 
 <body>
-<article>
-  <div class="envelope-container">
 
-    <div class="message message-1" id="message-1">
-      <h1>LOVE-LETTER-FOR-YOU 💌</h1>
-      <p>Click the heart for a surprise</p>
-    </div>
+  <div class="container">
+    <h1>LOVE-LETTER-FOR-YOU💕</h1>
 
-    <div class="message message-2" id="message-2">
-      <h2>Just for you 💖</h2>
-    </div>
+    <div id="letter" class="letter"></div>
 
-    <button class="close-btn" id="close-btn" onclick="toggleEnvelope()">Close</button>
+    <button onclick="startLetter()">Open My Heart 💌</button>
 
-    <div class="heart-btn" id="heart-btn" onclick="toggleEnvelope()">
-      ❤
-      <div class="heart-btn-text">click</div>
-    </div>
-
-    <div class="floating-hearts">
-      <div class="hearts-row" id="hearts"></div>
-    </div>
-
-    <div class="envelope-flap">
-      <svg class="inner">
-        <polygon points="5,0 345,0 175,145"></polygon>
-      </svg>
-      <svg class="outer" id="outer">
-        <polygon points="5,150 345,150 175,0"></polygon>
-      </svg>
-    </div>
-
-    <div class="envelope-base"></div>
+    <footer>
+      Made with love ✨
+    </footer>
   </div>
-</article>
 
-<script>
-  const inner = document.querySelector(".inner");
-  const outer = document.getElementById("outer");
-  const heartBtn = document.getElementById("heart-btn");
-  const closeBtn = document.getElementById("close-btn");
-  const message1 = document.getElementById("message-1");
-  const message2 = document.getElementById("message-2");
-  const hearts = document.getElementById("hearts");
+  <script>
+    const message = `Hi,
 
-  const sweetWords = [
-    "LOVE LETTER 💌",
-    "YOU ARE SPECIAL ✨",
-    "SO MUCH LOVE 💖",
-    "YOU MAKE ME SMILE 😊",
-    "MY FAVORITE PERSON 💕",
-    "ALWAYS YOU 💞",
-    "SWEET THOUGHTS 💗",
-    "JUST FOR YOU 🌸"
-  ];
+I just wanted to say that you mean more to me than words can fully explain.
+Every little thing about you makes my days brighter and my heart lighter.
 
-  function randomWords() {
-    hearts.innerHTML = "";
-    for (let i = 0; i < 3; i++) {
-      const span = document.createElement("span");
-      span.className = "love-text";
-      span.textContent = sweetWords[Math.floor(Math.random() * sweetWords.length)];
-      hearts.appendChild(span);
+Thank you for existing.
+Thank you for being you.
+
+Always,
+Someone who cares 🤍`;
+
+    let index = 0;
+
+    function startLetter() {
+      document.getElementById("letter").innerHTML = "";
+      index = 0;
+      typeEffect();
     }
-  }
 
-  function toggleEnvelope() {
-    inner.classList.toggle("inner-open");
-    outer.classList.toggle("outer-open");
+    function typeEffect() {
+      if (index < message.length) {
+        document.getElementById("letter").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeEffect, 40);
+      }
+    }
 
-    heartBtn.classList.toggle("hide");
-    closeBtn.classList.toggle("show");
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
 
-    message1.classList.toggle("hide");
-    message2.style.display = "block";
+      document.body.appendChild(heart);
 
-    randomWords();
-    hearts.classList.remove("animated");
-    void hearts.offsetWidth;
-    hearts.classList.add("animated");
-  }
-</script>
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
 </body>
 </html>
