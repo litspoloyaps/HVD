@@ -26,7 +26,7 @@
       padding: 30px;
       border-radius: 20px;
       width: 90%;
-      max-width: 500px;
+      max-width: 520px;
       text-align: center;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
       animation: fadeIn 1.5s ease;
@@ -37,16 +37,27 @@
       margin-bottom: 10px;
     }
 
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 1em;
+      text-align: center;
+    }
+
     .letter {
       font-size: 1.05em;
       color: #333;
-      min-height: 120px;
+      min-height: 140px;
       margin-top: 15px;
       white-space: pre-line;
     }
 
     button {
-      margin-top: 20px;
+      margin-top: 15px;
       padding: 12px 24px;
       border: none;
       border-radius: 25px;
@@ -55,6 +66,7 @@
       font-size: 1em;
       cursor: pointer;
       transition: 0.3s;
+      width: 100%;
     }
 
     button:hover {
@@ -65,30 +77,17 @@
     .heart {
       position: absolute;
       color: rgba(255, 0, 76, 0.6);
-      font-size: 18px;
       animation: float 6s linear infinite;
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(1); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     footer {
@@ -102,40 +101,83 @@
 <body>
 
   <div class="container">
-    <h1>LOVE-LETTER-FOR-YOU💕</h1>
+    <h1>LOVE-LETTER-FOR-YOU 💕</h1>
+
+    <!-- PASSWORD LOCK -->
+    <input type="password" id="password" placeholder="Enter the secret password 💖">
+
+    <!-- NAME INPUT -->
+    <input type="text" id="name" placeholder="Your name here ✨">
+
+    <!-- MODE SELECT -->
+    <select id="mode">
+      <option value="valentine">💘 Valentine’s</option>
+      <option value="anniversary">💞 Anniversary</option>
+      <option value="confession">💗 Confession</option>
+    </select>
+
+    <button onclick="unlock()">Unlock My Heart 🔐</button>
 
     <div id="letter" class="letter"></div>
 
-    <button onclick="startLetter()">Open My Heart 💌</button>
-
-    <footer>
-      Made with love ✨
-    </footer>
+    <footer>Made with love ✨</footer>
   </div>
 
   <script>
-    const message = `Hi,
-
-I just wanted to say that you mean more to me than words can fully explain.
-Every little thing about you makes my days brighter and my heart lighter.
-
-Thank you for existing.
-Thank you for being you.
-
-Always,
-Someone who cares 🤍`;
+    const SECRET_PASSWORD = "love"; // change this password
 
     let index = 0;
+    let finalMessage = "";
 
-    function startLetter() {
+    function unlock() {
+      const password = document.getElementById("password").value;
+      const name = document.getElementById("name").value || "You";
+      const mode = document.getElementById("mode").value;
+
+      if (password !== SECRET_PASSWORD) {
+        alert("Wrong password 💔");
+        return;
+      }
+
+      if (mode === "valentine") {
+        finalMessage = `Hi ${name},
+
+Happy Valentine’s Day 💘
+You make my heart smile in ways I never knew were possible.
+Every moment with you feels special, and every thought of you feels warm.
+
+Today and always,
+I choose you 🤍`;
+      }
+
+      if (mode === "anniversary") {
+        finalMessage = `Hi ${name},
+
+Happy Anniversary 💞
+Thank you for every memory, every laugh, and every quiet moment.
+Time feels softer and sweeter because of you.
+
+Forever grateful for us 🤍`;
+      }
+
+      if (mode === "confession") {
+        finalMessage = `Hi ${name},
+
+I’ve been holding this in for a while…
+I like you. More than I probably should.
+Being around you makes everything feel lighter and brighter.
+
+I just wanted you to know 🤍`;
+      }
+
       document.getElementById("letter").innerHTML = "";
       index = 0;
       typeEffect();
     }
 
     function typeEffect() {
-      if (index < message.length) {
-        document.getElementById("letter").innerHTML += message.charAt(index);
+      if (index < finalMessage.length) {
+        document.getElementById("letter").innerHTML += finalMessage.charAt(index);
         index++;
         setTimeout(typeEffect, 40);
       }
@@ -147,14 +189,11 @@ Someone who cares 🤍`;
       heart.className = "heart";
       heart.innerHTML = "❤";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      heart.style.fontSize = Math.random() * 20 + 12 + "px";
       heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-
       document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
+      setTimeout(() => heart.remove(), 6000);
     }
 
     setInterval(createHeart, 400);
